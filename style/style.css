@@ -1,0 +1,91 @@
+* { box-sizing: border-box; }
+
+
+body {
+    background-color: rgb(124, 168, 250);
+}
+
+
+/*first div */
+.wrapper {
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgb(255, 255, 255);
+  margin: 80px;
+  perspective: 400px; /* Controls position 3D object based on its perspective in relation to distance of viewer to sceen */
+ 
+ 
+}
+
+/* second div */
+.square-cube {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-100px);
+  transition: transform 1s;
+  
+  
+}
+
+/* divs for faces */
+.cube__side { 
+    position: absolute;
+    width: 200px;
+    height: 200px;
+
+    /* Border around the cube faces */
+    border: 3px solid rgb(0, 0, 0); 
+    line-height: 200px;
+    font-size: 40px;
+
+
+    /* text */
+    font-weight: bold; 
+    color: white;
+    text-align: center;
+  
+}
+
+
+/* Rotation in degrees for each face */
+
+
+.cube__side--front  { transform: rotateY(  0deg) translateZ(100px); } /* 1 */
+.cube__side--right  { transform: rotateY( 90deg) translateZ(100px); } /* 6 */
+.cube__side--back   { transform: rotateY(180deg) translateZ(100px); } /* 2 */
+.cube__side--left   { transform: rotateY(-90deg) translateZ(100px); } /* 5 */
+.cube__side--top    { transform: rotateX( 90deg) translateZ(100px); } /* 3 */
+.cube__side--bottom { transform: rotateX(-90deg) translateZ(100px); } /* 4 */
+
+/* Color palette for cube faces with each corresponding side */
+/* doesnt have to be in rgba format, use your own hex colors I guess */
+.cube__side--front  { background: rgba(255, 0, 0, 0.7); } /* 1 */
+.cube__side--right  {  background: rgba(143, 1, 1, 0.7); } /* 6 */
+.cube__side--back   {  background: rgba(248, 114, 114, 0.7);} /* 2 */
+.cube__side--left   {  background: rgba(255, 82, 82, 0.7); } /* 5 */
+.cube__side--top    {  background: rgba(245, 137, 137, 0.7); } /* 3 */
+.cube__side--bottom {  background: rgba(248, 40, 40, 0.7);} /* 4 */
+
+
+/* main code for rotation and control */
+@keyframes spin {
+  from {transform: rotateY(0)}
+  to {transform: rotateY(360deg)}
+}
+
+.square-cube {
+  animation: spin 5s infinite linear; /* main animation loop for cube rotation in one direction horizontal */
+}
+
+
+
+@keyframes spin-vertical {
+	from { transform: rotateX(0); }
+	to { transform: rotateX(-360deg); }
+}
+
+.square-cube {
+  animation: spin-vertical 5s infinite linear; /* main animation loop for cube rotation in one direction vertically */
+}
